@@ -12,19 +12,43 @@ const deckId = 1;
 function Home() {
   return (
     <div>
-      <Link to="/decks/new">Create Deck</Link>
-      <div className={"card"}>
+      <div class="mb-3">
+        <Link to="/decks/new">
+          <button type="button" class="btn btn-secondary">
+            <i class="bi bi-plus-circle"></i> Create Deck
+          </button>
+        </Link>
+      </div>
+      <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <div class="mb-3">
+            <h5 class="card-title">Card title</h5>
 
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          
-          <Link to={`/decks/${deckId}/study`}>Study</Link>
-          <Link to={`/decks/${deckId}/edit`}>Edit</Link>
-          <Link to="#">Delete</Link>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <Link to={`/decks/${deckId}/edit`}>
+                <button type="button" class="btn btn-secondary mr-3">
+                  <i class="bi bi-pencil"></i> Edit
+                </button>
+              </Link>
+              <Link to={`/decks/${deckId}/study`}>
+                <button type="button" class="btn btn-primary">
+                  <i class="bi bi-book"></i> Study
+                </button>
+              </Link>
+            </div>
+            <Link to="#">
+              <button type="button" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
