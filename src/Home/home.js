@@ -12,6 +12,7 @@ const deckId = 1;
 function Home() {
   return (
     <div>
+      {/* Create Button */}
       <div class="mb-3">
         <Link to="/decks/new">
           <button type="button" class="btn btn-secondary">
@@ -19,6 +20,8 @@ function Home() {
           </button>
         </Link>
       </div>
+
+      {/* Card List */}
       <div class="card mb-3">
         <div class="card-body">
           <div class="mb-3">
