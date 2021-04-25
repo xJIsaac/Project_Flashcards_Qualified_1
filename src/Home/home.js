@@ -50,13 +50,11 @@ function Home() {
 
       {/* List of Decks */}
       <div className="list-group mb-5">
-        {decks.map((deck, index) => {
+        {decks.map((deck) => {
           return (
-            <DeckListItem
-              deck={deck}
-              index={index}
-              handleDeleteDeck={handleDeleteDeck}
-            />
+            <div key={deck.id}>
+              <DeckListItem deck={deck} handleDeleteDeck={handleDeleteDeck} />
+            </div>
           );
         })}
       </div>

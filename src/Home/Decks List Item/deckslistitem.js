@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function DeckListItem(params) {
-  const { deck, index, handleDeleteDeck } = params;
+export default function DeckListItem(props) {
+  const { deck, handleDeleteDeck } = props;
   const { id, name, cards, description } = deck;
+
   return (
-    <div className="list-group-item" key={index}>
+    <div className="list-group-item">
       <div className="d-flex justify-content-between">
         <h5>{name}</h5>
         <small>{cards.length} Cards</small>
