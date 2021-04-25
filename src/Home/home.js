@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { listDecks } from "../utils/api/index.js";
+import { listDecks, deleteDeck } from "../utils/api/index.js";
 import DeckListItem from "./Decks List Item/deckslistitem.js";
 /*
 A "Create Deck" button is shown and clicking it brings the user to the Create Deck screen.
@@ -12,33 +12,52 @@ Clicking the “Delete” button shows a warning message before deleting the dec
 
 function Home() {
   const [decks, setDecks] = useState([]);
-
   useEffect(() => {
     const abortCtrl = new AbortController();
     listDecks(abortCtrl.signal).then((data) => {
       setDecks(data);
     });
-
     return () => {
       abortCtrl.abort();
     };
   }, []);
 
+  const handleDeleteDeck = (id) => {
+    const confirmMsg =
+      "Delete this deck?\n\nYou will not be able to recover it.";
+    if (window.confirm(confirmMsg)) {
+      const abortCtrl = new AbortController();
+      deleteDeck(id, abortCtrl.signal).then(() => {
+        listDecks(abortCtrl.signal).then((data) => {
+          setDecks(data);
+        });
+      });
+
+      return () => {
+        abortCtrl.abort();
+      };
+    }
+  };
+
   return (
     <div>
       {/* Create Button */}
-      <div className="mb-3">
-        <Link to="/decks/new">
-          <button type="button" className="btn btn-secondary">
-            <i className="bi bi-plus-circle"></i> Create Deck
-          </button>
-        </Link>
-      </div>
+      <Link to="/decks/new">
+        <button type="button" className="btn btn-secondary mb-3">
+          <i className="bi bi-plus-circle"></i> Create Deck
+        </button>
+      </Link>
 
       {/* List of Decks */}
       <div className="list-group mb-5">
         {decks.map((deck, index) => {
-          return DeckListItem(deck, index);
+          return (
+            <DeckListItem
+              deck={deck}
+              index={index}
+              handleDeleteDeck={handleDeleteDeck}
+            />
+          );
         })}
       </div>
     </div>

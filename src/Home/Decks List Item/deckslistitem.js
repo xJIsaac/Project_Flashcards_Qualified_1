@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function DeckListItem({ id, name, cards, description }, index) {
+export default function DeckListItem(params) {
+  const { deck, index, handleDeleteDeck } = params;
+  const { id, name, cards, description } = deck;
   return (
     <div className="list-group-item" key={index}>
       <div className="d-flex justify-content-between">
@@ -23,11 +25,14 @@ export default function DeckListItem({ id, name, cards, description }, index) {
             </button>
           </Link>
         </div>
-        <Link to="#">
-          <button type="button" className="btn btn-danger">
-            <i className="bi bi-trash"></i>
-          </button>
-        </Link>
+
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => handleDeleteDeck(id)}
+        >
+          <i className="bi bi-trash"></i>
+        </button>
       </div>
     </div>
   );
