@@ -23,16 +23,16 @@ export default function CreateDeck() {
           <label htmlFor="deckName">Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="deckName"
             placeholder="Deck Name"
           ></input>
         </div>
         <div className="form-group">
-          <label for="exampleFormControlTextarea1">Description</label>
+          <label for="description">Description</label>
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            id="description"
             rows="3"
             placeholder="Brief description of the deck"
           ></textarea>
