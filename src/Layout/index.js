@@ -5,6 +5,7 @@ import NotFound from "./NotFound";
 import Home from "../Home/home.js";
 import Study from "../Study/study.js";
 import CreateDeck from "../Create Deck/createDeck.js";
+import Deck from "../Deck/deck.js";
 
 function Layout() {
   return (
@@ -18,6 +19,9 @@ function Layout() {
           </Route>
           <Route exact={true} path="/decks/new">
             <CreateDeck />
+          </Route>
+          <Route exact={true} path="/decks/:deckId">
+            <Deck />
           </Route>
           <Route exact={true} path="/">
             <Home />
