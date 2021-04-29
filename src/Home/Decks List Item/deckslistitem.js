@@ -17,12 +17,12 @@ export default function DeckListItem(props) {
         <div>
           <Link to={`/decks/${id}/edit`}>
             <button type="button" className="btn btn-secondary mr-3">
-              <i className="bi bi-pencil"></i> Edit
+              <i className="bi bi-pencil mr-2"></i>Edit
             </button>
           </Link>
           <Link to={`/decks/${id}/study`}>
             <button type="button" className="btn btn-primary">
-              <i className="bi bi-book"></i> Study
+              <i className="bi bi-book mr-2"></i>Study
             </button>
           </Link>
         </div>
