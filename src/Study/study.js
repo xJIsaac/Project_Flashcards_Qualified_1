@@ -1,13 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { readDeck } from "../utils/api/index.js";
 
 export default function Study() {
+  const deckId = useParams().deckId;
   const [deck, setDeck] = useState();
   const [currentCard, setCurrentCard] = useState();
-  const deckId = useParams().deckId;
+  const [isflipped, setIsFlipped] = useState(false);
+  const history = useHistory();
+  const NextBtn = () => {
+    if (isflipped) {
+      return (
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => handleNextClick()}
+        >
+          Next
+        </button>
+      );
+    }
+    return null;
+  };
+  const CardText = () => {
+    if (currentCard) {
+      return isflipped ? currentCard.back : currentCard.front;
+    }
+  };
 
+  const handleFlipClick = () => {
+    setIsFlipped(!isflipped);
+  };
+
+  const handleNextClick = () => {
+    const nextCard = deck.cards[deck.cards.indexOf(currentCard) + 1];
+    setCurrentCard(nextCard);
+    setIsFlipped(!isflipped);
+  };
+
+  // Set Deck
   useEffect(() => {
     const abortCtrl = new AbortController();
     readDeck(deckId, abortCtrl.signal).then((data) => {
@@ -15,19 +47,37 @@ export default function Study() {
     });
     return () => {
       console.log("cleanup", deckId);
-      abortCtrl.abort(); // Cancels any pending request or response
+      abortCtrl.abort();
     };
   }, [deckId]);
 
+  // Set Current Card
   useEffect(() => {
     if (deck) {
       setCurrentCard(deck.cards[0]);
+      //console.log("current card set");
     }
   }, [deck]);
 
-  console.log("deck: ", deck);
-  //console.log("cards: ", cards);
-  console.log("currentCard: ", currentCard);
+  // Modal Trigger
+  useEffect(() => {
+    if (
+      currentCard &&
+      deck.cards.indexOf(currentCard) + 1 === deck.cards.length &&
+      isflipped
+    ) {
+      setTimeout(() => {
+        const message =
+          "Restart cards?\n\nClick 'cancel' to return to the home page.";
+        if (window.confirm(message)) {
+          setCurrentCard(deck.cards[0]);
+          setIsFlipped(false);
+        } else {
+          history.push("/");
+        }
+      }, 1000);
+    }
+  });
 
   if (deck === undefined || currentCard === undefined) {
     return <h1>Loading...</h1>;
@@ -56,10 +106,17 @@ export default function Study() {
           <h5 className="card-title">
             Card {deck.cards.indexOf(currentCard) + 1} of {deck.cards.length}
           </h5>
-          <p className="card-text">{currentCard.front}</p>
-          <button type="button" className="btn btn-secondary">
+          <p className="card-text">
+            <CardText />
+          </p>
+          <button
+            type="button"
+            className="btn btn-secondary mr-2"
+            onClick={() => handleFlipClick()}
+          >
             Flip
           </button>
+          {<NextBtn />}
         </div>
       </div>
     </div>
