@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { readDeck } from "../utils/api/index.js";
 
 export default function Study() {
-  const deckId = useParams().deckId;
   const [deck, setDeck] = useState();
   const [currentCard, setCurrentCard] = useState();
   const [isflipped, setIsFlipped] = useState(false);
   const history = useHistory();
+  const deckId = useParams().deckId;
   const NextBtn = () => {
     if (isflipped) {
       return (
@@ -68,11 +68,9 @@ export default function Study() {
       );
     }
   };
-
   const handleFlipClick = () => {
     setIsFlipped(!isflipped);
   };
-
   const handleNextClick = () => {
     const nextCard = deck.cards[deck.cards.indexOf(currentCard) + 1];
     setCurrentCard(nextCard);
@@ -86,7 +84,6 @@ export default function Study() {
       setDeck(data);
     });
     return () => {
-      console.log("cleanup", deckId);
       abortCtrl.abort();
     };
   }, [deckId]);
@@ -95,7 +92,6 @@ export default function Study() {
   useEffect(() => {
     if (deck) {
       setCurrentCard(deck.cards[0]);
-      //console.log("current card set");
     }
   }, [deck]);
 
