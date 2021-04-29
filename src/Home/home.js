@@ -44,7 +44,7 @@ function Home() {
       {/* Create Button */}
       <Link to="/decks/new">
         <button type="button" className="btn btn-secondary mb-3">
-          <i className="bi bi-plus-circle"></i> Create Deck
+          <i className="bi bi-plus-square mr-2"></i>Create Deck
         </button>
       </Link>
 
