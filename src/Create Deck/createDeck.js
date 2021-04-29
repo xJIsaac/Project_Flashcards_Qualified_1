@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { createDeck } from "../utils/api/index.js";
 
