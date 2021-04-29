@@ -27,6 +27,7 @@ export default function Study() {
     if (currentCard) {
       return isflipped ? currentCard.back : currentCard.front;
     }
+    return null
   };
   const CardBody = () => {
     if (deck.cards.length <= 2) {
@@ -111,11 +112,11 @@ export default function Study() {
         } else {
           history.push("/");
         }
-      }, 1000);
+      }, 500);
     }
   });
 
-  if (deck === undefined || currentCard === undefined) {
+  if (deck === undefined) {
     return <h1>Loading...</h1>;
   }
 
