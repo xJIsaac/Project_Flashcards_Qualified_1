@@ -38,7 +38,7 @@ export default function Study() {
             You need at least 3 cards to study. There are {deck.cards.length}{" "}
             cards in this deck.
           </p>
-          <Link to="/decks/new">
+          <Link to={`/decks/${deck.id}/cards/new`}>
             <button type="button" className="btn btn-primary mb-5">
               <i className="bi bi-plus-square mr-2"></i>
               Add Card
