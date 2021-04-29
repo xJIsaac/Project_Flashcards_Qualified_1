@@ -127,7 +127,7 @@ export default function Study() {
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
             <Link to={"/"}>
-              <i className="bi bi-house-door-fill"></i> Home
+              <i className="bi bi-house-door-fill mr-2"></i>Home
             </Link>
           </li>
           <li className="breadcrumb-item">{deck.name}</li>
