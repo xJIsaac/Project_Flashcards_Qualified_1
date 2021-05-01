@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { listDecks, deleteDeck } from "../utils/api/index.js";
-import DeckListItem from "./Decks List Item/deckslistitem.js";
+import DeckListItem from "./DeckListItem.js";
 /*
 A "Create Deck" button is shown and clicking it brings the user to the Create Deck screen.
 Existing decks are each shown with the deck name, the number of cards, and a “Study,” “View,” and “Delete” button.
