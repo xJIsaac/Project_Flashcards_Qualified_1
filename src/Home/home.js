@@ -10,7 +10,7 @@ Clicking the “Edit” button brings the user to the Edit Deck screen.
 Clicking the “Delete” button shows a warning message before deleting the deck.
 */
 
-function Home() {
+export default function Home() {
   const [decks, setDecks] = useState([]);
   useEffect(() => {
     const abortCtrl = new AbortController();
@@ -61,5 +61,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
