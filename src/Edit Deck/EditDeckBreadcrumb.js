@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function EditBreadcrumb({ deck }) {
+export default function EditDeckBreadcrumb({ deck }) {
   return (
     <div>
       <nav aria-label="breadcrumb">
