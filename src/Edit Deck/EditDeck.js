@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { readDeck, updateDeck } from "../utils/api/index.js";
-import Breadcrumb from "./Breadcrumb.js";
+import EditBreadcrumb from "./EditBreadcrumb.js";
 
 export default function EditDeck() {
   const params = useParams();
@@ -41,7 +41,7 @@ export default function EditDeck() {
   if (deck) {
     return (
       <div className="mb-5">
-        <Breadcrumb />
+        <EditBreadcrumb deck={deck}/>
         <h1>Edit Deck</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

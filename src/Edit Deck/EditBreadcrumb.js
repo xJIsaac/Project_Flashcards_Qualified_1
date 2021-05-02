@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Breadcrumb() {
+export default function EditBreadcrumb({ deck }) {
   return (
     <div>
       <nav aria-label="breadcrumb">
@@ -11,7 +11,10 @@ export default function Breadcrumb() {
               <i className="bi bi-house-door-fill mr-2"></i>Home
             </Link>
           </li>
-          <li className="breadcrumb-item">Create Deck</li>
+          <li className="breadcrumb-item">{deck.name}</li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Edit Deck
+          </li>
         </ol>
       </nav>
     </div>
