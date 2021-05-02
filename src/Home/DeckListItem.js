@@ -9,7 +9,7 @@ export default function DeckListItem(props) {
     <div className="list-group-item">
       <div className="d-flex justify-content-between">
         <h5>{name}</h5>
-        <small>{cards.length} Cards</small>
+        <small>{cards.length + " cards"}</small>
       </div>
       <p>{description}</p>
 
