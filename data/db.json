@@ -58,6 +58,12 @@
       "back": "back",
       "deckId": 1,
       "id": 7
+    },
+    {
+      "front": "this is some stuff on the front of the card",
+      "back": "this is some stuff on the back of the card",
+      "deckId": 1,
+      "id": 8
     }
   ]
 }
