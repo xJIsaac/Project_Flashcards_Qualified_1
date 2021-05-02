@@ -8,6 +8,7 @@ import CreateDeck from "../Create Deck/CreateDeck.js";
 import Deck from "../Deck/Deck.js";
 import EditDeck from "../Edit Deck/EditDeck.js";
 import AddCard from "../Add Card/AddCard.js";
+import EditCard from "../Edit Card/EditCard.js";
 
 function Layout() {
   return (
@@ -16,6 +17,9 @@ function Layout() {
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Switch>
+          <Route exact={true} path="/decks/:deckId/cards/:cardId/edit">
+            <EditCard />
+          </Route>
           <Route exact={true} path="/decks/:deckId/study">
             <Study />
           </Route>
