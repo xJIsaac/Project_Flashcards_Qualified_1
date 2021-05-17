@@ -4,8 +4,7 @@ export default function CardForm(props) {
   const {
     submitHandler,
     cancelHandler,
-    handleFrontChange,
-    handleBackChange,
+    handleCardChange,
     submitBtnText,
     cancelBtnText,
     cardFront,
@@ -20,10 +19,10 @@ export default function CardForm(props) {
           <textarea
             className="form-control"
             id="cardFront"
-            name="cardFront"
+            name="front"
             rows="2"
             placeholder="Front side of card"
-            onChange={handleFrontChange}
+            onChange={handleCardChange}
             value={cardFront}
           ></textarea>
         </div>
@@ -32,10 +31,10 @@ export default function CardForm(props) {
           <textarea
             className="form-control"
             id="cardBack"
-            name="cardBack"
+            name="back"
             rows="2"
             placeholder="Back side of card"
-            onChange={handleBackChange}
+            onChange={handleCardChange}
             value={cardBack}
           ></textarea>
         </div>

@@ -7,23 +7,25 @@ import EditCardBreadcrumb from "./EditCardBreadcrumb.js";
 export default function EditCard() {
   const params = useParams();
   const history = useHistory();
-  const [deck, setDeck] = useState();
-  const [card, setCard] = useState();
-  const [cardFront, setCardFront] = useState("");
-  const [cardBack, setCardBack] = useState("");
-  const handleFrontChange = (event) => setCardFront(event.target.value);
-  const handleBackChange = (event) => setCardBack(event.target.value);
+  const [deck, setDeck] = useState({ name: "" });
+  const [card, setCard] = useState({ front: "", back: "" });
+
+  const handleCardChange = (event) => {
+    setCard({
+      ...card,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const cardUpdate = {
+    updateCard({
       id: card.id,
-      front: cardFront,
-      back: cardBack,
+      front: card.front,
+      back: card.back,
       deckId: deck.id,
-    };
-    updateCard(cardUpdate).then((data) => {
-      setCardFront("");
-      setCardBack("");
+    }).then((data) => {
+      setCard({ front: "", back: "" });
       history.push(`/decks/${deck.id}`);
     });
   };
@@ -44,29 +46,23 @@ export default function EditCard() {
   // Pre-fill form
   useEffect(() => {
     if (card) {
-      setCardFront(card.front);
-      setCardBack(card.back);
+      setCard({ front: card.front, back: card.back });
     }
-  }, [card]);
+  }, []);
 
-  if (deck && card) {
-    return (
-      <div className="mb-5">
-        <EditCardBreadcrumb deck={deck} card={card} />
-        <h3>Edit Card</h3>
-        <CardForm
-          submitHandler={handleSubmit}
-          cancelHandler={handleCancelClick}
-          handleFrontChange={handleFrontChange}
-          handleBackChange={handleBackChange}
-          submitBtnText="Submit"
-          cancelBtnText="Cancel"
-          cardFront={cardFront}
-          cardBack={cardBack}
-        />
-      </div>
-    );
-  } else {
-    return <h2>Loading Card...</h2>;
-  }
+  return (
+    <div className="mb-5">
+      <EditCardBreadcrumb deck={deck} card={card} />
+      <h3>Edit Card</h3>
+      <CardForm
+        submitHandler={handleSubmit}
+        cancelHandler={handleCancelClick}
+        handleCardChange={handleCardChange}
+        submitBtnText="Submit"
+        cancelBtnText="Cancel"
+        cardFront={card.front}
+        cardBack={card.back}
+      />
+    </div>
+  );
 }
