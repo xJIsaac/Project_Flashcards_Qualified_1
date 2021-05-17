@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { readCard, readDeck, updateCard } from "../utils/api/index.js";
-import CardForm from "../CardForm/CardForm.js";
+import CardForm from "../Forms/CardForm.js";
 import EditCardBreadcrumb from "./EditCardBreadcrumb.js";
 
 export default function EditCard() {
