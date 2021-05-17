@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Form(props) {
+export default function CardForm(props) {
   const {
     submitHandler,
     cancelHandler,
@@ -50,7 +50,6 @@ export default function Form(props) {
           {submitBtnText}
         </button>
       </form>
-      ;
     </div>
   );
 }

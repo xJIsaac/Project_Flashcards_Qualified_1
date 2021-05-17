@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { readCard, readDeck, updateCard } from "../utils/api/index.js";
-import Form from "../Form/Form.js";
+import CardForm from "../CardForm/CardForm.js";
 import EditCardBreadcrumb from "./EditCardBreadcrumb.js";
 
 export default function EditCard() {
@@ -54,7 +54,7 @@ export default function EditCard() {
       <div className="mb-5">
         <EditCardBreadcrumb deck={deck} card={card} />
         <h3>Edit Card</h3>
-        <Form
+        <CardForm
           submitHandler={handleSubmit}
           cancelHandler={handleCancelClick}
           handleFrontChange={handleFrontChange}

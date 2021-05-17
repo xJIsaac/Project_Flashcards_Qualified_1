@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { createCard, readDeck } from "../utils/api/index.js";
-import Form from "../Form/Form.js";
+import CardForm from "../CardForm/CardForm.js";
 import AddCardBreadcrumb from "./AddCardBreadcrumb.js";
 
 export default function AddCard() {
@@ -36,7 +36,7 @@ export default function AddCard() {
       <div className="mb-5">
         <AddCardBreadcrumb deck={deck} />
         <h4>{`${deck.name}: Add Card`}</h4>
-        <Form
+        <CardForm
           submitHandler={handleSave}
           cancelHandler={handleDoneClick}
           handleFrontChange={handleFrontChange}
