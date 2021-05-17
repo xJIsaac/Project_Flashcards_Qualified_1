@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { createCard, readDeck } from "../utils/api/index.js";
+import Form from "../Form/Form.js";
 import AddCardBreadcrumb from "./AddCardBreadcrumb.js";
 
-export default function CreateDeck() {
+export default function AddCard() {
   const params = useParams();
   const history = useHistory();
   const [deck, setDeck] = useState();
@@ -35,42 +36,16 @@ export default function CreateDeck() {
       <div className="mb-5">
         <AddCardBreadcrumb deck={deck} />
         <h4>{`${deck.name}: Add Card`}</h4>
-        <form onSubmit={handleSave}>
-          <div className="form-group">
-            <label htmlFor="cardFront">Front</label>
-            <textarea
-              className="form-control"
-              id="cardFront"
-              name="cardFront"
-              rows="2"
-              placeholder="Front side of card"
-              onChange={handleFrontChange}
-              value={cardFront}
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label htmlFor="cardBack">Back</label>
-            <textarea
-              className="form-control"
-              id="cardBack"
-              name="cardCack"
-              rows="2"
-              placeholder="Back side of card"
-              onChange={handleBackChange}
-              value={cardBack}
-            ></textarea>
-          </div>
-          <button
-            type="button"
-            className="btn btn-secondary mr-2"
-            onClick={handleDoneClick}
-          >
-            Done
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Save
-          </button>
-        </form>
+        <Form
+          submitHandler={handleSave}
+          cancelHandler={handleDoneClick}
+          handleFrontChange={handleFrontChange}
+          handleBackChange={handleBackChange}
+          submitBtnText="Save"
+          cancelBtnText="Done"
+          cardFront={cardFront}
+          cardBack={cardBack}
+        />
       </div>
     );
   } else {
